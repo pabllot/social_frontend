@@ -8,7 +8,7 @@ const Comments = () => {
   const comments = [
     {
       id: 1,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
+      desc: "Lorem ipsum dholor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
       name: "John Doe",
       userId: 1,
       profilePicture:
