@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({
     username: "",
@@ -20,6 +21,7 @@ const Login = () => {
     e.preventDefault()
     try {
       await login(inputs);
+      navigate("/")
       
     } catch (error) {
       setError(error.response.data)
