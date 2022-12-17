@@ -14,6 +14,8 @@ const Comments = ({postId}) => {
   })
   );
 
+  console.log(data)
+
   return (
     <div className="comments">
       <div className="write">
