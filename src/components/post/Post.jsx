@@ -8,20 +8,37 @@ import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 import { useState, useContext } from "react";
 import moment from 'moment';
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   const { isLoading, error, data } = useQuery(["likes", post.id], () =>
   makeRequest.get("/likes?postId="+ post.id).then((res) => {
     return res.data;
   })
   );
-  console.log(data)
+  const queryClient = useQueryClient();
+  
+  const mutation = useMutation((liked) => {
+    if(liked) return makeRequest.delete("/likes?postId="+ post.id);
+    return makeRequest.post("/likes", {postId: post.id});
+  }, {
+    onSuccess: ()=>{
+      //Invalid and refetch
+      queryClient.invalidateQueries(["likes"])
+    }
+  })
+
+
+  const handleLike = () => {
+    mutation.mutate(data.includes(currentUser.id))
+  }
+
+
   return (
     <div className="post">
       <div className="container">
@@ -46,8 +63,8 @@ const Post = ({ post }) => {
         </div>
         <div className="info">
           <div className="item">
-            {data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color: "red"}} /> : <FavoriteBorderOutlinedIcon />}
-            {data.length} Likes
+            {isLoading ? "loading.." :  data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color: "red"}} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
+            {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
