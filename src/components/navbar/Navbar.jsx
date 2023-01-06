@@ -18,7 +18,7 @@ const Navbar = () => {
           <span>pablotsocialmedia</span>
         </Link>
         {darkMode ? (
-          <WbSunnyOutlinedIcon onClick={toggle} />
+          <WbSunnyOutlinedIcon style={{color: 'yellow'}} onClick={toggle} />
         ) : (
           <DarkModeOutlinedIcon onClick={toggle} />
         )}
