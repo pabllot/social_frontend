@@ -2,8 +2,7 @@ import "./post.scss";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 import { useState, useContext } from "react";
@@ -11,10 +10,15 @@ import moment from 'moment';
 import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
+import { useLocation } from "react-router-dom";
+
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
+
+  const userId = parseInt(useLocation().pathname.split("/")[2])
+
 
   const { isLoading, error, data } = useQuery(["likes", post.id], () =>
   makeRequest.get("/likes?postId="+ post.id).then((res) => {
@@ -31,14 +35,30 @@ const Post = ({ post }) => {
       //Invalid and refetch
       queryClient.invalidateQueries(["likes"])
     }
-  })
+  });
 
+  const deleteMutation = useMutation(
+    (postId) => {
+      return makeRequest.delete("/posts/" + postId);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["posts"]);
+      },
+    }
+  );
 
   const handleLike = () => {
-    mutation.mutate(data.includes(currentUser.id))
-  }
+    mutation.mutate(data.includes(currentUser.id));
+  };
 
+  const handleDelete = () => {
+    deleteMutation.mutate(post.id);
+    window.location.reload(false); //TEMPORARY SOLUTION
 
+  };
+  
   return (
     <div className="post">
       <div className="container">
@@ -55,7 +75,6 @@ const Post = ({ post }) => {
               <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
-          <MoreHorizIcon />
         </div>
         <div className="content">
           <p>{post.desc}</p>
@@ -70,10 +89,11 @@ const Post = ({ post }) => {
             <TextsmsOutlinedIcon />
             12 Comments
           </div>
-          <div className="item">
-            <ShareOutlinedIcon />
-            Share
-          </div>
+          {userId === currentUser.id && 
+          <div className="item" onClick={handleDelete}>
+            <DeleteOutlineIcon />
+            Delete
+          </div>}
         </div>
         {commentOpen && <Comments postId={post.id} />}
       </div>
