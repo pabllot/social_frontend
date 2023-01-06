@@ -10,15 +10,11 @@ import moment from 'moment';
 import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
-import { useLocation } from "react-router-dom";
 
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
-
-  const userId = parseInt(useLocation().pathname.split("/")[2])
-
 
   const { isLoading, error, data } = useQuery(["likes", post.id], () =>
   makeRequest.get("/likes?postId="+ post.id).then((res) => {
@@ -89,7 +85,7 @@ const Post = ({ post }) => {
             <TextsmsOutlinedIcon />
             12 Comments
           </div>
-          {userId === currentUser.id && 
+          {post.userId === currentUser.id && 
           <div className="item" onClick={handleDelete}>
             <DeleteOutlineIcon />
             Delete
