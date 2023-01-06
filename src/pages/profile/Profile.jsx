@@ -50,12 +50,12 @@ const Profile = () => {
       {isLoading ? "loading..." : <>
       <div className="images">
         <img
-          src={data?.coverPic}
+          src={"/upload/"+data?.coverPic}
           alt=""
           className="cover"
         />
         <img
-          src={data?.profilePic}
+          src={"/upload/"+data?.profilePic}
           alt=""
           className="profilePic"
         />
@@ -83,7 +83,7 @@ const Profile = () => {
       <Posts userId={userId}/>
       </div>
       </>}
-      {openUpdate && <Update setOpenUpdate={setOpenUpdate} />}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };
