@@ -6,10 +6,11 @@ import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import Update from "../../components/update/Update";
 
 const Profile = () => {
-
+  const [openUpdate, setOpenUpdate] = useState(false)
   const { currentUser } = useContext(AuthContext)
 
   const userId = parseInt(useLocation().pathname.split("/")[2])
@@ -74,7 +75,7 @@ const Profile = () => {
                 <span>{data?.website}</span>
               </div>
             </div>
-            {rIsLoading ? "Loading" :  userId === currentUser.id ? <button>Upgrade</button> :
+            {rIsLoading ? "Loading" :  userId === currentUser.id ? <button onClick={()=>setOpenUpdate(true)}>update</button> :
              <button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
           </div>
         
@@ -82,6 +83,7 @@ const Profile = () => {
       <Posts userId={userId}/>
       </div>
       </>}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} />}
     </div>
   );
 };
