@@ -2,7 +2,7 @@ import "./navbar.scss";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
@@ -11,12 +11,19 @@ import { makeRequest } from "../../axios";
 
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { toggle, darkMode } = useContext(DarkModeContext);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    await logout()
+    navigate("/login")
+  }
 
   return (
     <div className="navbar">
       <div className="left">
+        <button onClick={handleLogout}>logout</button>
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>pablotsocialmedia</span>
         </Link>
