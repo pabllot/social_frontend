@@ -42,10 +42,10 @@ const Register = () => {
         </div>
         <div className="right">
           <h1>Register</h1>
-          <form autocomplete="off">
-            <input autocomplete="off" type="text"  placeholder="Username" name="username" onChange={handleChange}/>
-            <input type="password" autocomplete="off" placeholder="Password" name="password" onChange={handleChange}/>
+          <form>
+            <input type="text"  placeholder="Username" name="username" onChange={handleChange}/>
             <input type="text" autocomplete="off" placeholder="Name" name="name"onChange={handleChange}/>
+            <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
             {error && error}
             <button onClick={handleClick}>Register</button>
           </form>
