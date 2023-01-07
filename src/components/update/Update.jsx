@@ -7,12 +7,12 @@ import "./update.scss"
 
 const Update = ({ setOpenUpdate, user }) => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout, currentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [cover, setCover] = useState(null)
   const [profile, setProfile] = useState(null)
   const [texts, setTexts] = useState({
-      name: "",
+      name: currentUser.name,
       city: "",
       website: ""
   });
@@ -120,7 +120,7 @@ const Update = ({ setOpenUpdate, user }) => {
               onChange={handleChange}
               autoComplete='off'
             />
-            <label>Website</label>
+            <label>Instagram</label>
             <input
               type="text"
               name="website"

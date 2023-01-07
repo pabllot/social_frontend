@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import "./register.scss";
 import axios from 'axios'
 
-const Register = () => {
-  
+const Register = () => {  
   const [inputs, setInputs] = useState({
     username: "",
-    email: "",
     password: "",
     name: ""
   });
@@ -44,11 +42,10 @@ const Register = () => {
         </div>
         <div className="right">
           <h1>Register</h1>
-          <form>
-            <input type="text" placeholder="Username" name="username" onChange={handleChange}/>
-            <input type="email" placeholder="Email" name="email" onChange={handleChange}/>
-            <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
-            <input type="text" placeholder="Name" name="name"onChange={handleChange}/>
+          <form autocomplete="off">
+            <input autocomplete="off" type="text"  placeholder="Username" name="username" onChange={handleChange}/>
+            <input type="password" autocomplete="off" placeholder="Password" name="password" onChange={handleChange}/>
+            <input type="text" autocomplete="off" placeholder="Name" name="name"onChange={handleChange}/>
             {error && error}
             <button onClick={handleClick}>Register</button>
           </form>

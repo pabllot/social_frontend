@@ -36,6 +36,7 @@ const Navbar = () => {
       </div>
       <div className="right">
         <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit" }}>
+        {currentUser.profilePic === null ? <div>clique aqui para adicionar sua foto de perfil</div> : ''}  
         <div className="user">
           <img
             src={`/upload/${currentUser.profilePic}`}
