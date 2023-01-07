@@ -14,13 +14,16 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext)
 
   const userId = parseInt(useLocation().pathname.split("/")[2])
+  console.log(userId)
 
-  const { isLoading, error, data } = useQuery(["user"], () =>
+  const { isLoading, error, data: userData } = useQuery(["user"], () =>
   makeRequest.get("/users/find/"+ userId).then((res) => {
     return res.data;
   })
   );
 
+
+  
   const { isLoading: rIsLoading,  data: relationshipData } = useQuery(["relationship"], () =>
   makeRequest.get("/relationships?followedUserId="+ userId).then((res) => {
     return res.data;
@@ -50,29 +53,29 @@ const Profile = () => {
       {isLoading ? "loading..." : <>
       <div className="images">
         <img
-          src={"/upload/"+data?.coverPic}
+          src={"/upload/"+userData.coverPic}
           alt=""
           className="cover"
         />
         <img
-          src={"/upload/"+data?.profilePic}
+          src={"/upload/"+userData.profilePic}
           alt=""
           className="profilePic"
         />
       </div>
       <div className="profileContainer">
         <div className="uInfo">
-          
+    
           <div className="center">
-            <span>{data?.name}</span>
+            <span>{userData?.name}</span>
             <div className="info">
               <div className="item">
                 <PlaceIcon />
-                <span>{data?.city}</span>
+                <span>{userData?.city}</span>
               </div>
               <div className="item">
                 <LanguageIcon />
-                <span>{data?.website}</span>
+                <span>{userData?.website}</span>
               </div>
             </div>
             {rIsLoading ? "Loading" :  userId === currentUser.id ? <button onClick={()=>setOpenUpdate(true)}>update</button> :
@@ -83,7 +86,7 @@ const Profile = () => {
       <Posts userId={userId}/>
       </div>
       </>}
-      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={userData} />}
     </div>
   );
 };

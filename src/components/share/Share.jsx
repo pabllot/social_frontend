@@ -2,7 +2,7 @@ import "./share.scss";
 import Image from "../../assets/img.png";
 import { useContext, useState} from "react";
 import { AuthContext } from "../../context/authContext";
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient, useQuery } from 'react-query'
 import { makeRequest } from "../../axios";
 
 const Share = () => {
@@ -54,7 +54,7 @@ const Share = () => {
               />
             <input 
             type="text" 
-            placeholder={`What's on your mind ${currentUser.name}?`}
+              placeholder={`What's on your mind ${currentUser.name}?`}
             onChange={(e)=>setDesc(e.target.value)}
             value={desc}
             />
