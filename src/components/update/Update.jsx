@@ -1,7 +1,6 @@
-import React from 'react'
 import { useState } from 'react';
 import { makeRequest } from '../../axios';
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query';
 import "./update.scss"
 
 
@@ -64,7 +63,7 @@ const Update = ({ setOpenUpdate, user }) => {
                 <label htmlFor="cover">
                   <span>Cover Picture</span>
                   <div className="imgContainer">
-                    <img style={{width: '90px'}}
+                    <img 
                       src={
                         cover
                           ? URL.createObjectURL(cover)
@@ -83,7 +82,7 @@ const Update = ({ setOpenUpdate, user }) => {
                 <label htmlFor="profile">
                   <span>Profile Picture</span>
                   <div className="imgContainer">
-                    <img style={{width: '90px'}}
+                    <img 
                       src={
                         profile
                           ? URL.createObjectURL(profile)
@@ -104,6 +103,7 @@ const Update = ({ setOpenUpdate, user }) => {
               <label>Name</label>
               <input
                 type="text"
+                autoComplete='off'
                 value={texts.name}
                 name="name"
                 onChange={handleChange}
@@ -114,6 +114,7 @@ const Update = ({ setOpenUpdate, user }) => {
                 name="city"
                 value={texts.city}
                 onChange={handleChange}
+                autoComplete='off'
               />
               <label>Website</label>
               <input
@@ -121,6 +122,7 @@ const Update = ({ setOpenUpdate, user }) => {
                 name="website"
                 value={texts.website}
                 onChange={handleChange}
+                autoComplete='off'
               />
               <button onClick={handleSubmit}>Update</button>
             </form>
