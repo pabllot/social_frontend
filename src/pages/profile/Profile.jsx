@@ -29,6 +29,8 @@ const Profile = () => {
     return res.data;
   })
   );
+  
+
 
   const queryClient = useQueryClient();
   
@@ -45,6 +47,10 @@ const Profile = () => {
 
   const handleFollow = () => {
     mutation.mutate(relationshipData.includes(currentUser.id))
+  }
+
+  const deleteUser = () => {
+    makeRequest.delete(`/users/${userId}`)
   }
 
 
@@ -87,6 +93,7 @@ const Profile = () => {
       </div>
       </>}
       {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={userData} />}
+      {currentUser.id === 2 && <button onClick={deleteUser}>Delete user</button>}
     </div>
   );
 };
