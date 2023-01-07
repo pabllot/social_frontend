@@ -3,18 +3,23 @@ import { useState } from 'react';
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom';
 import { makeRequest } from '../../axios';
+import { useLocation } from "react-router-dom";
+
 
 import "./rightBar.scss";
 
 const RightBar = () => {
-  const [users, setUsers] = useState('')
+
   const { isLoading, error, data } = useQuery(["users"], () =>
   makeRequest.get("/users").then((res) => {
     return res.data;
   })
   );
 
-console.log(data)
+  const location = useLocation().pathname.includes('profile')
+
+
+
 
   return (
     <div className="rightBar">
@@ -22,7 +27,7 @@ console.log(data)
         <div className="item">
           <span>Suggestions For You</span>
 
-          {isLoading ? "loading..." : data.map((user) => {
+          {isLoading ? "loading..." : !location ? data.map((user) => {
             return (
 
               <Link to={`/profile/${user.id}`} style={{textDecoration: "none"}}>
@@ -39,7 +44,7 @@ console.log(data)
                  </div>
                </div>
             </Link>
-         ) })}
+         ) }) : ''}
           
      
 

@@ -83,7 +83,7 @@ const Post = ({ post }) => {
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            0 Comments
           </div>
           {post.userId === currentUser.id && 
           <div className="item" onClick={handleDelete}>
