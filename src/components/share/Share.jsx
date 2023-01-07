@@ -39,6 +39,7 @@ const Share = () => {
     setDesc("");
     setFile(null);
     window.location.reload(false); //TEMPORARY SOLUTION
+    makeRequest.post("/relationships/self")
 
   };
 
