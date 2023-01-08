@@ -78,8 +78,10 @@ const Profile = () => {
                 <span>{userData?.website}</span>
               </div>
             </div>
-            {rIsLoading ? "Loading" :  userId === currentUser.id ? <button onClick={()=>setOpenUpdate(true)}>update</button> :
-             <button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
+            <div style={{display: 'flex', gap: '8px'}}>
+            {<button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
+            {rIsLoading ? "Loading" :  userId === currentUser.id && <button onClick={()=>setOpenUpdate(true)}>update</button>} 
+            </div>
           </div>
         
         </div>
