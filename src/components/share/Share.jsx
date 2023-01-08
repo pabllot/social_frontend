@@ -4,6 +4,7 @@ import { useContext, useState} from "react";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQueryClient } from 'react-query'
 import { makeRequest } from "../../axios";
+import { Link } from "react-router-dom";
 
 const Share = () => {
   const {currentUser} = useContext(AuthContext);
@@ -48,10 +49,12 @@ const Share = () => {
       <div className="container">
         <div className="top">
           <div className="left">
+            <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
             <img
               src={`/upload/${currentUser.profilePic}`}
               alt=""
               />
+              </Link>
             <input 
             type="text" 
               placeholder={`What's on your mind ${currentUser.name}?`}
