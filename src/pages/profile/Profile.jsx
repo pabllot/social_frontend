@@ -79,7 +79,7 @@ const Profile = () => {
               </div>
             </div>
             <div style={{display: 'flex', gap: '8px'}}>
-            {<button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
+            {rIsLoading ? "Loading" : <button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
             {rIsLoading ? "Loading" :  userId === currentUser.id && <button onClick={()=>setOpenUpdate(true)}>update</button>} 
             </div>
           </div>
