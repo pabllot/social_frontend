@@ -41,7 +41,7 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser || currentUser === 'user has been logged out.')  {
+    if (!currentUser)  {
       return <Navigate to="/login" />;
     }
 
