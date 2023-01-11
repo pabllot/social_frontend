@@ -1,13 +1,13 @@
-import "./leftBar.scss";
+import { Container } from "./styles";
 
 const LeftBar = () => {
 
   return (
-    <div className="leftBar">
+    <Container className="leftBar">
       <div className="container">
         
       </div>
-    </div>
+    </Container>
   );
 };
 
