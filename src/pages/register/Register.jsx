@@ -7,7 +7,9 @@ const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
-    name: ""
+    name: "",
+    profilePic: 'user.png', 
+    coverPic: 'cover.png'
   });
 
   const [error, setError] = useState(null);

@@ -17,10 +17,10 @@ const RightBar = () => {
   const location = useLocation().pathname.includes('profile')
 
   return (
-    <div className="rightBar">
+    <div className={`${!location ? 'rightBar': 'none'}`}>
       <div className="container">
         <div className="item">
-          <span>Suggestions For You</span>
+          <span>All {data?.length} users</span>
 
           {isLoading ? "loading..." : !location ? data.map((user) => {
             return (
