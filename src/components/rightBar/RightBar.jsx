@@ -8,7 +8,7 @@ import "./rightBar.scss";
 
 const RightBar = () => {
 
-  const { isLoading, error, data } = useQuery(["users"], () =>
+  const { isLoading, data } = useQuery(["users"], () =>
   makeRequest.get("/users").then((res) => {
     return res.data;
   })
