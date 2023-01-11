@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import "./comments.scss";
 import { AuthContext } from "../../context/authContext";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { makeRequest } from "../../axios";
 import moment from 'moment'
+import { Button, Comment, Container, Date, Image, Info, Input, Write } from "./style";
+import { Link } from "react-router-dom";
 
 const Comments = ({postId}) => {
   const [desc, setDesc] = useState("");
@@ -11,7 +12,7 @@ const Comments = ({postId}) => {
   const queryClient = useQueryClient();
 
 
-  const { isLoading, error, data } = useQuery('comments', () =>
+  const { isLoading, data } = useQuery('comments', () =>
   makeRequest.get("/comments?postId="+postId).then((res) => {
     return res.data;
   })
@@ -34,28 +35,29 @@ const Comments = ({postId}) => {
   };
 
   return (
-    <div className="comments">
-      <div className="write">
-        <img src={"/upload/"+currentUser.profilePic} alt="" />
-        <input 
+    <Container>
+      <Write>
+        <Image src={"/upload/"+currentUser.profilePic} alt="" />
+        <Input 
         type="text"
         placeholder="write a comment"
         value={desc}
         onChange={(e) => setDesc(e.target.value)} 
         />
-        <button onClick={handleClick}>Send</button>
-      </div>
+        <Button onClick={handleClick}>Send</Button>
+      </Write>
       { isLoading ? "Loading" : data.map((comment) => (
-        <div className="comment">
-          <img src={"/upload/"+comment.profilePic} alt="" />
-          <div className="info">
-            <span>{comment.name}</span>
+        <Comment>
+          <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit" }}>
+            <Image src={"/upload/"+comment.profilePic} alt="" />
+          </Link>
+          <Info>
             <p>{comment.desc}</p>
-          </div>
-          <span className="date">{moment(comment.createdAt).fromNow()}</span>
-        </div>
+          </Info>
+          <Date>{moment(comment.createdAt).fromNow()}</Date>
+        </Comment>
       ))}
-    </div>
+    </Container>
   );
 };
 
