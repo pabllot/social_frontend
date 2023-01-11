@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/authContext";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { makeRequest } from "../../axios";
 import moment from 'moment'
-import { Button, Comment, Container, Date, Image, Info, Input, Write } from "./style";
+import { Button, Comment, Container, Date, Image, Info, Input, Write } from "./styles";
 import { Link } from "react-router-dom";
 
 const Comments = ({postId}) => {
