@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { makeRequest } from '../../axios';
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-
-import "./rightBar.scss";
+import { Button, ButtonContainer, Container, Image, Item, Span, SubContainer, User, UserInfo, UsernameSpan } from './styles';
 
 const RightBar = () => {
 
@@ -17,35 +16,34 @@ const RightBar = () => {
   const location = useLocation().pathname.includes('profile')
 
   return (
-    <div className={`${!location ? 'rightBar': 'none'}`}>
-      <div className="container">
-        <div className="item">
-          <span>All {data?.length} users</span>
+    <>
+      {!location && <Container>
+        <SubContainer>
+          <Item>
+            <Span>All {data?.length} users</Span>
 
-          {isLoading ? "loading..." : !location ? data.map((user) => {
-            return (
+            {isLoading ? "loading..." : !location ? data.map((user) => {
+              return (
+                <Link key={uuidv4()} to={`/profile/${user.id}`} style={{textDecoration: "none"}}>
+                <User>
+                  <UserInfo>
+                    <Image
+                      src={"/upload/"+user.profilePic}
+                      alt=""
+                      />
+                    <UsernameSpan>{user.username}</UsernameSpan>
+                  </UserInfo>
+                  <ButtonContainer>
+                    <Button>view profile</Button>
+                  </ButtonContainer>
+                </User>
+              </Link>
+          ) }) : ''}        
 
-              <Link key={uuidv4()} to={`/profile/${user.id}`} style={{textDecoration: "none"}}>
-              <div  className="user">
-                 <div className="userInfo">
-                   <img
-                     src={"/upload/"+user.profilePic}
-                     alt=""
-                     />
-                   <span>{user.username}</span>
-                 </div>
-                 <div className="buttons">
-                   <button>view profile</button>
-                 </div>
-               </div>
-            </Link>
-         ) }) : ''}
-          
-     
-
-        </div>
-      </div>
-    </div>
+          </Item>
+        </SubContainer>
+      </Container>}
+    </>
   );
 };
 
