@@ -1,4 +1,4 @@
-import "./post.scss";
+import { Container, Content, ContentImg, DateSpan, Details, Image, Info, Item, NameSpan, SubContainer, User, UserInfo } from "./styles";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -56,44 +56,44 @@ const Post = ({ post }) => {
   };
   
   return (
-    <div className="post">
-      <div className="container">
-        <div className="user">
-          <div className="userInfo">
-            <img src={"/upload/"+post.profilePic} alt="" />
-            <div className="details">
+    <Container>
+      <SubContainer>
+        <User>
+          <UserInfo>
+            <Image src={"/upload/"+post.profilePic} alt="" />
+            <Details>
               <Link
                 to={`/profile/${post.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="name">{post.name}</span>
+                <NameSpan>{post.name}</NameSpan>
               </Link>
-              <span className="date">{moment(post.createdAt).fromNow()}</span>
-            </div>
-          </div>
-        </div>
-        <div className="content">
+              <DateSpan>{moment(post.createdAt).fromNow()}</DateSpan>
+            </Details>
+          </UserInfo>
+        </User>
+        <Content>
           <p>{post.desc}</p>
-          <img src={"./upload/"+ post.img} alt="" />
-        </div>
-        <div className="info">
-          <div className="item">
+          <ContentImg src={"./upload/"+ post.img} alt="" />
+        </Content>
+        <Info>
+          <Item>
             {isLoading ? "loading.." :  data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color: "red"}} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
             {data?.length} Likes
-          </div>
-          <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
+          </Item>
+          <Item onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
             Comments
-          </div>
+          </Item>
           {post.userId === currentUser.id && 
-          <div className="item" onClick={handleDelete}>
+          <Item onClick={handleDelete}>
             <DeleteOutlineIcon />
             Delete
-          </div>}
-        </div>
+          </Item>}
+        </Info>
         {commentOpen && <Comments postId={post.id} />}
-      </div>
-    </div>
+      </SubContainer>
+    </Container>
   );
 };
 
