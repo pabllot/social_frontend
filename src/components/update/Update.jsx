@@ -3,7 +3,7 @@ import { makeRequest } from '../../axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { AuthContext } from "../../context/authContext";
 import {  useNavigate } from "react-router-dom";
-import "./update.scss"
+import { Button, Close, Container, Files, Form, H1, Image, ImageContainer, Input, Label, Span, Wrapper } from './styles';
 
 const Update = ({ setOpenUpdate, user }) => {
   const navigate = useNavigate();
@@ -59,15 +59,15 @@ const Update = ({ setOpenUpdate, user }) => {
     }
 
     return (
-      <div className="update">
-        <div className="wrapper">
-          <h1>Update Your Profile</h1>
-          <form>
-            <div className="files">
-              <label htmlFor="cover">
-                <span>Cover Picture</span>
-                <div className="imgContainer">
-                  <img 
+      <Container>
+        <Wrapper>
+          <H1>Update Your Profile</H1>
+          <Form>
+            <Files>
+              <Label htmlFor="cover">
+                <Span>Cover Picture</Span>
+                <ImageContainer>
+                  <Image 
                     src={
                       cover
                         ? URL.createObjectURL(cover)
@@ -75,18 +75,18 @@ const Update = ({ setOpenUpdate, user }) => {
                     }
                     alt=""
                   />
-                </div>
-              </label>
-              <input
+                </ImageContainer>
+              </Label>
+              <Input
                 type="file"
                 id="cover"
                 style={{ display: "none" }}
                 onChange={(e) => setCover(e.target.files[0])}
               />
-              <label htmlFor="profile">
-                <span>Profile Picture</span>
-                <div className="imgContainer">
-                  <img 
+              <Label htmlFor="profile">
+                <Span>Profile Picture</Span>
+                <ImageContainer>
+                  <Image 
                     src={
                       profile
                         ? URL.createObjectURL(profile)
@@ -94,47 +94,47 @@ const Update = ({ setOpenUpdate, user }) => {
                     }
                     alt=""
                   />
-                </div>
-              </label>
-              <input
+                </ImageContainer>
+              </Label>
+              <Input
                 type="file"
                 id="profile"
                 style={{ display: "none" }}
                 onChange={(e) => setProfile(e.target.files[0])}
               />
-            </div>
+            </Files>
             
-            <label>Name</label>
-            <input
+            <Label>Name</Label>
+            <Input
               type="text"
               autoComplete='off'
               value={texts.name}
               name="name"
               onChange={handleChange}
             />
-            <label>Country / City</label>
-            <input
+            <Label>Country / City</Label>
+            <Input
               type="text"
               name="city"
               value={texts.city}
               onChange={handleChange}
               autoComplete='off'
             />
-            <label>Instagram</label>
-            <input
+            <Label>Instagram</Label>
+            <Input
               type="text"
               name="website"
               value={texts.website}
               onChange={handleChange}
               autoComplete='off'
             />
-            <button onClick={handleSubmit}>Update</button>
-          </form>
-          <button className="close" onClick={() => setOpenUpdate(false)}>
+            <Button onClick={handleSubmit}>Update</Button>
+          </Form>
+          <Close onClick={() => setOpenUpdate(false)}>
             close
-          </button>
-        </div>
-      </div>
+          </Close>
+        </Wrapper>
+      </Container>
     );
   };
 
