@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Button, ButtonForm, Card, Container, Form, H1, H1Left, Input, Left, Paragraph, Right, Span } from "./styles";
 
 const Register = () => {  
+  const navigate = useNavigate()
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
@@ -22,6 +23,7 @@ const Register = () => {
     e.preventDefault()
     try {
       await axios.post("http://localhost:8800/api/auth/register", inputs);
+      navigate('/login')
     } catch (error) {
       setError(error.response.data)
     }
