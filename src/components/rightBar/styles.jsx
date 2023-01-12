@@ -73,4 +73,5 @@ export const Button = styled.button`
     color: white;
     cursor: pointer;
     background-color: #5271ff;
+    border-radius: 2px;
 `

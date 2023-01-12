@@ -25,6 +25,7 @@ export const Button = styled.button`
     color: white;
     cursor: pointer;       
     background-color: #f0544f;
+    border-radius: 2px;
 `
 
 export const Span = styled.span`
