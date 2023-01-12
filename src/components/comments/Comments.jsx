@@ -61,7 +61,7 @@ const Comments = ({postId}) => {
         <Button onClick={handleClick}>Send</Button>
       </Write>
       { isLoading ? "Loading" : data.map((comment) => (
-        <Comment>
+        <Comment key={comment.id}>
           <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit" }}>
             <Image src={"/upload/"+comment.profilePic} alt="" />
           </Link>
