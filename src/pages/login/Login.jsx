@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import "./login.scss";
+import { Button, Card, Container, Form, FormButton, FormH1, H1, Input, Left, Paragraph, Right, Span } from "./styles";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -29,31 +29,31 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <div className="card">
-        <div className="left">
-          <h1>Hello World.</h1>
-          <p>
+    <Container>
+      <Card>
+        <Left>
+          <H1>Hello World.</H1>
+          <Paragraph>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
             alias totam numquam ipsa exercitationem dignissimos, error nam,
             consequatur.
-          </p>
-          <span>Don't you have an account?</span>
+          </Paragraph>
+          <Span>Don't you have an account?</Span>
           <Link to="/register">
-            <button>Register</button>
+            <Button>Register</Button>
           </Link>
-        </div>
-        <div className="right">
-          <h1>Login</h1>
-          <form>
-            <input type="text" placeholder="Username" name="username" onChange={handleChange}/>
-            <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
+        </Left>
+        <Right>
+          <FormH1>Login</FormH1>
+          <Form>
+            <Input type="text" placeholder="Username" name="username" onChange={handleChange}/>
+            <Input type="password" placeholder="Password" name="password" onChange={handleChange}/>
             {error && error}
-            <button onClick={handleLogin}>Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
+            <FormButton onClick={handleLogin}>Login</FormButton>
+          </Form>
+        </Right>
+      </Card>
+    </Container>
   );
 };
 
