@@ -31,6 +31,7 @@ export const Comment = styled.div`
       margin: 30px 0px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
 `
 
@@ -52,4 +53,13 @@ export const Date = styled.span`
         color: gray;
         font-size: 12px;
       
+`
+export const DeleteButton = styled.button`
+      border: none;
+      padding: 5px;
+      color: white;
+      cursor: pointer;       
+      background-color: #f0544f;
+      border-radius: 2px;
+      max-height: 30px;
 `

@@ -3,14 +3,13 @@ import { AuthContext } from "../../context/authContext";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { makeRequest } from "../../axios";
 import moment from 'moment'
-import { Button, Comment, Container, Date, Image, Info, Input, Write } from "./styles";
+import { Button, Comment, Container, Date, DeleteButton, Image, Info, Input, Write } from "./styles";
 import { Link } from "react-router-dom";
 
 const Comments = ({postId}) => {
   const [desc, setDesc] = useState("");
   const { currentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();
-
 
   const { isLoading, data } = useQuery('comments', () =>
   makeRequest.get("/comments?postId="+postId).then((res) => {
@@ -26,14 +25,29 @@ const Comments = ({postId}) => {
       queryClient.invalidateQueries(["comments"])
     }
   })
-
   const handleClick = async (e) => {
     e.preventDefault();
     mutation.mutate({desc, postId });
     setDesc("");
-
+    
   };
 
+  const deleteMutation = useMutation(
+    (commentId) => {
+      return makeRequest.delete("/comments/"+ commentId);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["comments"]);
+      },
+    }
+  );
+  
+  const handleDelete = (comment) => {
+    deleteMutation.mutate(comment);    
+  };
+  
   return (
     <Container>
       <Write>
@@ -55,6 +69,7 @@ const Comments = ({postId}) => {
             <p>{comment.desc}</p>
           </Info>
           <Date>{moment(comment.createdAt).fromNow()}</Date>
+          <DeleteButton onClick={()=>handleDelete(comment.id)}>Delete</DeleteButton>
         </Comment>
       ))}
     </Container>
