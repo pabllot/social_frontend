@@ -1,13 +1,13 @@
 import Posts from "../../components/posts/Posts"
 import Share from "../../components/share/Share"
-import "./home.scss"
+import { Container } from "./styles"
 
 const Home = () => {
   return (
-    <div className="home">
+    <Container>
       <Share/>
       <Posts/>
-    </div>
+    </Container>
   )
 }
 
