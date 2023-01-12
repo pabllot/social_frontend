@@ -46,11 +46,11 @@ export const Input = styled.input`
     background-color: transparent;
     color: lightgray; //themed color
 
-    @media (max-width: 350px) {
-        display: none;
-    }
     @media (max-width: 768px) {
         width: 200px;
+    }
+    @media (max-width: 350px) {
+        display: none;
     }
 `
 

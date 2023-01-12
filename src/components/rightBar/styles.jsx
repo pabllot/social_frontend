@@ -12,10 +12,10 @@ export const Container = styled.div`
       display: none;
     }
 
-    @media (max-width: 350px) {
+    @media (max-width: 768px) {
         display: none;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 350px) {
         display: none;
     }
 `
