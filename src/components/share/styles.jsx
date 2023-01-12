@@ -5,7 +5,7 @@ export const Container = styled.div`
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     border-radius: 20px;
-    background-color: #444; //bg
+    background-color: #222; //bg
     color: whitesmoke;//textcolor
     margin-bottom: 20px;
 `

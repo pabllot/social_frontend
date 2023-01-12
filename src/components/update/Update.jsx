@@ -13,8 +13,8 @@ const Update = ({ setOpenUpdate, user }) => {
   const [profile, setProfile] = useState(null)
   const [texts, setTexts] = useState({
       name: currentUser.name,
-      city: "",
-      website: ""
+      city: currentUser.city,
+      website: currentUser.website
   });
 
   const upload = async (file) => {
