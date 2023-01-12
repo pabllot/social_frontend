@@ -1,4 +1,3 @@
-import "./profile.scss";
 import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import Posts from "../../components/posts/Posts";
@@ -8,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useState } from "react";
 import Update from "../../components/update/Update";
+import { Button, ButtonsContainer, Center, CenterSpan, Container, Cover, ImagesContainer, Info, InfoSpan, Item, ProfileContainer, ProfilePic, UserInfo } from "./styles";
 
 const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false)
@@ -49,48 +49,47 @@ const Profile = () => {
 
 
   return (
-    <div className="profile">
-      {isLoading ? "loading..." : <>
-      <div className="images">
-        <img
+    <Container>
+      {isLoading ? "loading..." : 
+      <>
+      <ImagesContainer>
+        <Cover
           src={"/upload/"+userData.coverPic}
           alt=""
-          className="cover"
         />
-        <img
+        <ProfilePic
           src={"/upload/"+userData.profilePic}
           alt=""
-          className="profilePic"
         />
-      </div>
-      <div className="profileContainer">
-        <div className="uInfo">
+      </ImagesContainer>
+      <ProfileContainer>
+        <UserInfo>
     
-          <div className="center">
-            <span>{userData?.name}</span>
-            <div className="info">
-              <div className="item">
+          <Center>
+            <CenterSpan>{userData?.name}</CenterSpan>
+            <Info>
+              <Item>
                 <PlaceIcon />
-                <span>{userData?.city}</span>
-              </div>
-              <div className="item">
+                <InfoSpan>{userData?.city}</InfoSpan>
+              </Item>
+              <Item>
                 <LanguageIcon />
-                <span>{userData?.website}</span>
-              </div>
-            </div>
-            <div style={{display: 'flex', gap: '8px'}}>
-            {rIsLoading ? "Loading" : <button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
-            {rIsLoading ? "Loading" :  userId === currentUser.id && <button onClick={()=>setOpenUpdate(true)}>update</button>} 
-            </div>
-          </div>
+                <InfoSpan>{userData?.website}</InfoSpan>
+              </Item>
+            </Info>
+            <ButtonsContainer>
+              {rIsLoading ? "Loading" : <Button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</Button>}
+              {rIsLoading ? "Loading" :  userId === currentUser.id && <Button onClick={()=>setOpenUpdate(true)}>update</Button>} 
+            </ButtonsContainer>
+          </Center>
         
-        </div>
+        </UserInfo>
       <Posts userId={userId}/>
-      </div>
+      </ProfileContainer>
       </>}
       {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={userData} />}
-      {currentUser.id === 2 && <button onClick={deleteUser}>Delete user</button>}
-    </div>
+      {currentUser.id === 2 && <Button onClick={deleteUser}>Delete user</Button>}
+    </Container>
   );
 };
 
