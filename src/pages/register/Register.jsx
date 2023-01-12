@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./register.scss";
 import axios from 'axios'
+import { Button, ButtonForm, Card, Container, Form, H1, H1Left, Input, Left, Paragraph, Right, Span } from "./styles";
 
 const Register = () => {  
   const [inputs, setInputs] = useState({
@@ -28,32 +28,32 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
-      <div className="card">
-        <div className="left">
-          <h1>Lama Social.</h1>
-          <p>
+    <Container>
+      <Card>
+        <Left>
+          <H1Left>Lama Social.</H1Left>
+          <Paragraph>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
             alias totam numquam ipsa exercitationem dignissimos, error nam,
             consequatur.
-          </p>
-          <span>Do you have an account?</span>
+          </Paragraph>
+          <Span>Do you have an account?</Span>
           <Link to="/login">
-          <button>Login</button>
+          <Button>Login</Button>
           </Link>
-        </div>
-        <div className="right">
-          <h1>Register</h1>
-          <form>
-            <input type="text"  placeholder="Username" name="username" onChange={handleChange}/>
-            <input type="text" autocomplete="off" placeholder="Name" name="name"onChange={handleChange}/>
-            <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
+        </Left>
+        <Right>
+          <H1>Register</H1>
+          <Form>
+            <Input type="text"  placeholder="Username" name="username" onChange={handleChange}/>
+            <Input type="text" autocomplete="off" placeholder="Name" name="name"onChange={handleChange}/>
+            <Input type="password" placeholder="Password" name="password" onChange={handleChange}/>
             {error && error}
-            <button onClick={handleClick}>Register</button>
-          </form>
-        </div>
-      </div>
-    </div>
+            <ButtonForm onClick={handleClick}>Register</ButtonForm>
+          </Form>
+        </Right>
+      </Card>
+    </Container>
   );
 };
 
