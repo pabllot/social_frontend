@@ -1,5 +1,5 @@
 import PlaceIcon from "@mui/icons-material/Place";
-import LanguageIcon from "@mui/icons-material/Language";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import Posts from "../../components/posts/Posts";
 import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { makeRequest } from "../../axios";
@@ -73,7 +73,7 @@ const Profile = () => {
                 <InfoSpan>{userData?.city}</InfoSpan>
               </Item>
               <Item>
-                <LanguageIcon />
+                <InstagramIcon />
                 <InfoSpan>{userData?.website}</InfoSpan>
               </Item>
             </Info>
