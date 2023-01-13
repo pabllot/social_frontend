@@ -49,15 +49,15 @@ const Share = () => {
       <SubContainer>
         <Top>
           <Left>
-            <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
+            <Link to={`/profile/${currentUser?.id} `} style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
             <ImageLeft
-              src={`/upload/${currentUser.profilePic}`}
+              src={`/upload/${currentUser?.profilePic}`}
               alt=""
               />
               </Link>
             <Input 
             type="text" 
-              placeholder={`What's on your mind ${currentUser.name}?`}
+              placeholder={`What's on your mind ${currentUser?.name}?`}
             onChange={(e)=>setDesc(e.target.value)}
             value={desc}
             />

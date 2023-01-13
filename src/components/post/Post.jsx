@@ -60,38 +60,38 @@ const Post = ({ post }) => {
       <SubContainer>
         <User>
           <UserInfo>
-            <Image src={"/upload/"+post.profilePic} alt="" />
+            <Image src={"/upload/"+post?.profilePic} alt="" />
             <Details>
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post?.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <NameSpan>{post.name}</NameSpan>
+                <NameSpan>{post?.name}</NameSpan>
               </Link>
-              <DateSpan>{moment(post.createdAt).fromNow()}</DateSpan>
+              <DateSpan>{moment(post?.createdAt).fromNow()}</DateSpan>
             </Details>
           </UserInfo>
         </User>
         <Content>
           <p>{post.desc}</p>
-          <ContentImg src={"./upload/"+ post.img} alt="" />
+          <ContentImg src={"./upload/"+ post?.img} alt="" />
         </Content>
         <Info>
           <Item>
-            {isLoading ? "loading.." :  data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color: "red"}} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
+            {isLoading ? "loading.." :  data.includes(currentUser?.id) ? <FavoriteOutlinedIcon style={{color: "red"}} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
             {data?.length} Likes
           </Item>
           <Item onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
             Comments
           </Item>
-          {post.userId === currentUser.id && 
+          {post?.userId === currentUser?.id && 
           <Item onClick={handleDelete}>
             <DeleteOutlineIcon />
             Delete
           </Item>}
         </Info>
-        {commentOpen && <Comments postId={post.id} />}
+        {commentOpen && <Comments postId={post?.id} />}
       </SubContainer>
     </Container>
   );

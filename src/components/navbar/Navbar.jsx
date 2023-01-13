@@ -35,13 +35,13 @@ const Navbar = () => {
         </Search>
       </Left>
       <Right>
-        <Link to={`/profile/${currentUser.id} `} style={{ textDecoration: "none", color: "inherit" }}>
+        <Link to={`/profile/${currentUser?.id} `} style={{ textDecoration: "none", color: "inherit" }}>
         <User>
           <Image
-            src={`/upload/${currentUser.profilePic}`}
+            src={`/upload/${currentUser?.profilePic}`}
             alt=""
             />
-          <span>{currentUser.name}</span>
+          <span>{currentUser?.name}</span>
         </User>
         </Link>
       </Right>

@@ -12,7 +12,6 @@ import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -20,12 +19,11 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 function App() {
   const {currentUser} = useContext(AuthContext);
   const queryClient = new QueryClient()
-  const { darkMode } = useContext(DarkModeContext);
 
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
-        <div className={`theme-${darkMode ? "dark" : "light"}`}>
+        <div>
           <Navbar />
           <div style={{ display: "flex" }}>
             <LeftBar />
