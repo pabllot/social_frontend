@@ -32,11 +32,9 @@ const Login = () => {
     <Container>
       <Card>
         <Left>
-          <H1>Hello World.</H1>
+          <H1>Pablot Social.</H1>
           <Paragraph>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+          Join our social media to see what's going on with the people around you.
           </Paragraph>
           <Span>Don't you have an account?</Span>
           <Link to="/register">

@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     margin: auto;
     width: 40%;
     height: 70%;
-    background-color: #444;//bg
+    background-color: #0A2647;//bg
     padding: 50px;
     z-index: 999;
     display: flex;
@@ -77,7 +77,7 @@ export const Icon = styled.div`
 export const Input = styled.input`
     padding: 5px;
     border: none;
-    border-bottom: 1px solid #222; //border
+    border-bottom: 1px solid #144272; //border
     color: gray;
     background-color: transparent;
 `

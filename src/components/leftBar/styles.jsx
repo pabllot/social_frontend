@@ -6,10 +6,17 @@ export const Container = styled.div`
     top: 70px;
     height: calc(100vh - 70px);
     overflow: scroll;
-    background-color: #222;
+    background-color: #0A2647;
     color: white;
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+    @media (max-width: 350px) {
+        display: none;
     }
 
     `

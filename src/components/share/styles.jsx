@@ -5,7 +5,7 @@ export const Container = styled.div`
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     border-radius: 20px;
-    background-color: #222; //bg
+    background-color: #0A2647; //bg
     color: whitesmoke;//textcolor
     margin-bottom: 20px;
 `
@@ -35,7 +35,7 @@ export const Input = styled.input`
     outline: none;
     padding: 20px 10px;
     background-color: transparent;
-    width: 60%;
+    width: 100%;
     color: whitesmoke;//textcolor
 `
 
@@ -56,7 +56,7 @@ export const Hr = styled.hr`
     margin: 20px 0px;
     border: none;
     height: 0.5px;
-    background-color: #222;//border
+    background-color: #144272;//border
 `
 
 export const Bottom = styled.div`

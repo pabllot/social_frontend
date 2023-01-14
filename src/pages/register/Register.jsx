@@ -33,15 +33,13 @@ const Register = () => {
     <Container>
       <Card>
         <Left>
-          <H1Left>Lama Social.</H1Left>
+        <H1Left>Pablot Social.</H1Left>
           <Paragraph>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+          Join our social media to see what's going on with the people around you.
           </Paragraph>
           <Span>Do you have an account?</Span>
           <Link to="/login">
-          <Button>Login</Button>
+            <Button>Login</Button>
           </Link>
         </Left>
         <Right>
