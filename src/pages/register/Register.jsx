@@ -22,7 +22,7 @@ const Register = () => {
   const handleClick = async (e) => {
     e.preventDefault()
     try {
-      await axios.post("http://localhost:8800/api/auth/register", inputs);
+      await axios.post("http://socialmediapablot.vercel.app/api/auth/register", inputs);
       navigate('/login')
     } catch (error) {
       setError(error.response.data)
