@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("http://localhost:8800/api/auth/login", inputs, {
+    const res = await axios.post("http://socialmedia-backend-steel.vercel.app/api/auth/login", inputs, {
       withCredentials: true,
     })
 
@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post("http://localhost:8800/api/auth/logout", {
+    await axios.post("http://socialmedia-backend-steel.vercel.app/api/auth/logout", {
       withCredentials: true,
     })
 
