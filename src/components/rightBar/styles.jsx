@@ -6,7 +6,7 @@ export const Container = styled.div`
     top: 70px;
     height: calc(100vh - 70px);
     overflow: scroll;
-    background-color: #333; //bgsoft
+    background-color: #144272; //bgsoft
 
     &::-webkit-scrollbar {
       display: none;
@@ -30,10 +30,10 @@ export const Item = styled.div`
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #444; //bg
+    background-color: #0A2647; //bg
 `
 export const Span = styled.span`
-    color: gray;
+    color: white;
 `
 
 export const User = styled.div`

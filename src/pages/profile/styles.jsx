@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    background-color: #333;//BGSOFT
+    background-color: #144272;//BGSOFT
     min-height: 100vh;
 `
 
@@ -39,7 +39,7 @@ export const UserInfo = styled.div`
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     border-radius: 20px;
-    background-color: #222;//bg
+    background-color: #0A2647;//bg
     color: whitesmoke;//TEXTCOLLOR
     padding: 50px;
     display: flex;
