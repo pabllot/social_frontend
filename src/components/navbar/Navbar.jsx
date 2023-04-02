@@ -3,20 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { Button, Container, Image, Input, Left, Right, Search, Span, User, UserSpan } from "./styles";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { currentUser, logout } = useContext(AuthContext);
 
   const handleLogout = async () => {
-    await logout()
-    navigate("/login")
-  }
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <Container>
       <Left>
-        <Button onClick={handleLogout}>logout</Button>
         <Link to="/" style={{ textDecoration: "none" }}>
           <Span>pablotsocialmedia</Span>
         </Link>
@@ -27,14 +27,14 @@ const Navbar = () => {
       </Left>
       <Right>
         <Link to={`/profile/${currentUser?.id} `} style={{ textDecoration: "none", color: "inherit" }}>
-        <User>
-          <Image
-            src={`/upload/${currentUser?.profilePic}`}
-            alt=""
-            />
-          <UserSpan>{currentUser?.name}</UserSpan>
-        </User>
+          <User>
+            <Image src={`/upload/${currentUser?.profilePic}`} alt="" />
+            <UserSpan>{currentUser?.name}</UserSpan>
+          </User>
         </Link>
+        <Button onClick={handleLogout}>
+          <MdOutlineLogout />
+        </Button>
       </Right>
     </Container>
   );
