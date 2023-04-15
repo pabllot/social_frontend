@@ -1,26 +1,26 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext";
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-import { makeRequest } from "../../axios";
 import { Button, Comment, Container, Date, DeleteButton, Image, Info, Input, Write } from "./styles";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Comments = ({ postId }) => {
   const [desc, setDesc] = useState("");
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
   const queryClient = useQueryClient();
 
   const { isLoading, data } = useQuery("comments", () =>
-    makeRequest.get("/comments?postId=" + postId).then((res) => {
+    api.get("/comments?postId=" + postId).then((res) => {
       return res.data;
     })
   );
 
   const mutation = useMutation(
     (newComment) => {
-      return makeRequest.post("/comments", newComment);
+      return api.post("/comments", newComment);
     },
     {
       onSuccess: () => {
@@ -37,7 +37,7 @@ const Comments = ({ postId }) => {
 
   const deleteMutation = useMutation(
     (commentId) => {
-      return makeRequest.delete("/comments/" + commentId);
+      return api.delete("/comments/" + commentId);
     },
     {
       onSuccess: () => {

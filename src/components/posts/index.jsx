@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import { v4 as uuidv4 } from "uuid";
 
-import { makeRequest } from "../../axios";
-import Post from "../post/Post";
+import Post from "../post";
 import { Container } from "./styles";
+import { api } from "../../services/api";
 
 const Posts = ({ userId }) => {
   const { isLoading, error, data } = useQuery("post", () =>
-    makeRequest.get("/posts?userId=" + userId).then((res) => {
+    api.get("/posts?userId=" + userId).then((res) => {
       return res.data;
     })
   );

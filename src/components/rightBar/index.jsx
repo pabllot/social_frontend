@@ -4,11 +4,11 @@ import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { Button, ButtonContainer, Container, Image, Item, Span, SubContainer, User, UserInfo, UsernameSpan } from "./styles";
-import { makeRequest } from "../../axios";
+import { api } from "../../services/api";
 
 const RightBar = () => {
   const { isLoading, data } = useQuery(["users"], () =>
-    makeRequest.get("/users").then((res) => {
+    api.get("/users").then((res) => {
       return res.data;
     })
   );

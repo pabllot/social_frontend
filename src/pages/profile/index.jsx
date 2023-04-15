@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import PlaceIcon from "@mui/icons-material/Place";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-import { makeRequest } from "../../axios";
-import { AuthContext } from "../../context/authContext";
 import {
   Button,
   ButtonsContainer,
@@ -21,22 +19,24 @@ import {
   ProfilePic,
   UserInfo,
 } from "./styles";
-import Update from "../../components/update/Update";
-import Posts from "../../components/posts/Posts";
+import Update from "../../components/update";
+import Posts from "../../components/posts";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
 
   const userId = parseInt(useLocation().pathname.split("/")[2]);
 
   const { isLoading, data: userData } = useQuery(["user"], () =>
-    makeRequest.get("/users/find/" + userId).then((res) => {
+    api.get("/users/find/" + userId).then((res) => {
       return res.data;
     })
   );
   const { isLoading: rIsLoading, data: relationshipData } = useQuery(["relationship"], () =>
-    makeRequest.get("/relationships?followedUserId=" + userId).then((res) => {
+    api.get("/relationships?followedUserId=" + userId).then((res) => {
       return res.data;
     })
   );
@@ -45,8 +45,8 @@ const Profile = () => {
 
   const mutation = useMutation(
     (following) => {
-      if (following) return makeRequest.delete("/relationships?userId=" + userId);
-      return makeRequest.post("/relationships", { userId });
+      if (following) return api.delete("/relationships?userId=" + userId);
+      return api.post("/relationships", { userId });
     },
     {
       onSuccess: () => {
@@ -61,7 +61,7 @@ const Profile = () => {
   };
 
   const deleteUser = () => {
-    makeRequest.delete(`/users/${userId}`);
+    api.delete(`/users/${userId}`);
   };
 
   return (

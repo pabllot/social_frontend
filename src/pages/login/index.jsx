@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../../context/authContext";
 import { Button, Card, Container, Form, FormButton, FormH1, H1, Input, Left, Paragraph, Right, Span } from "./styles";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({

@@ -1,22 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { MdOutlineLogout } from "react-icons/md";
 import { useQuery } from "react-query";
 
 import { Button, Container, Filtered, Image, Input, Left, Right, Search, SearchModal, Span, User, UserSpan, searchModal } from "./styles";
-import { AuthContext } from "../../context/authContext";
-import { makeRequest } from "../../axios";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([""]);
-  const { currentUser, logout } = useContext(AuthContext);
+  const { currentUser, logout } = useAuth();
 
   const { isLoading, data } = useQuery(["users"], () =>
-    makeRequest.get("/users").then((res) => {
+    api.get("/users").then((res) => {
       return res.data;
     })
   );

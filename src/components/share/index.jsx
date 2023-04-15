@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -20,12 +20,12 @@ import {
   SubContainer,
   Top,
 } from "./styles";
-import { AuthContext } from "../../context/authContext";
-import { makeRequest } from "../../axios";
 import Image from "../../assets/img.png";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Share = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
   const queryClient = useQueryClient();
   const [file, setFile] = useState(null);
   const [desc, setDesc] = useState("");
@@ -34,7 +34,7 @@ const Share = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await makeRequest.post("/upload", formData);
+      const res = await api.post("/upload", formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -43,11 +43,10 @@ const Share = () => {
 
   const mutation = useMutation(
     (newPost) => {
-      return makeRequest.post("/posts", newPost);
+      return api.post("/posts", newPost);
     },
     {
       onSuccess: () => {
-        //Invalid and refetch
         queryClient.invalidateQueries(["posts"]);
       },
     }

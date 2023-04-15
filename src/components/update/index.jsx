@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Close, Container, Files, Form, H1, Image, ImageContainer, Input, Label, Span, Wrapper } from "./styles";
-import { makeRequest } from "../../axios";
-import { AuthContext } from "../../context/authContext";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Update = ({ setOpenUpdate, user }) => {
   const navigate = useNavigate();
-  const { logout, currentUser } = useContext(AuthContext);
+  const { logout, currentUser } = useAuth();
   const queryClient = useQueryClient();
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -22,7 +22,7 @@ const Update = ({ setOpenUpdate, user }) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await makeRequest.post("/upload", formData);
+      const res = await api.post("/upload", formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -35,7 +35,7 @@ const Update = ({ setOpenUpdate, user }) => {
 
   const mutation = useMutation(
     (user) => {
-      return makeRequest.put("/users", user);
+      return api.put("/users", user);
     },
     {
       onSuccess: () => {

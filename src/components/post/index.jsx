@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -8,16 +8,16 @@ import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import moment from "moment";
 
 import { Container, Content, ContentImg, DateSpan, Details, Image, Info, Item, NameSpan, SubContainer, User, UserInfo } from "./styles";
-import { AuthContext } from "../../context/authContext";
-import Comments from "../comments/Comments";
-import { makeRequest } from "../../axios";
+import Comments from "../comments";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
 
   const { isLoading, data } = useQuery(["likes", post.id], () =>
-    makeRequest.get("/likes?postId=" + post.id).then((res) => {
+    api.get("/likes?postId=" + post.id).then((res) => {
       return res.data;
     })
   );
@@ -25,8 +25,8 @@ const Post = ({ post }) => {
 
   const mutation = useMutation(
     (liked) => {
-      if (liked) return makeRequest.delete("/likes?postId=" + post.id);
-      return makeRequest.post("/likes", { postId: post.id });
+      if (liked) return api.delete("/likes?postId=" + post.id);
+      return api.post("/likes", { postId: post.id });
     },
     {
       onSuccess: () => {
@@ -38,7 +38,7 @@ const Post = ({ post }) => {
 
   const deleteMutation = useMutation(
     (postId) => {
-      return makeRequest.delete("/posts/" + postId);
+      return api.delete("/posts/" + postId);
     },
     {
       onSuccess: () => {
