@@ -1,20 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
-import {
-  Button,
-  ButtonForm,
-  Card,
-  Container,
-  Form,
-  H1,
-  H1Left,
-  Input,
-  Left,
-  Paragraph,
-  Right,
-  Span,
-} from "./styles";
+import { Button, ButtonForm, Card, Container, Form, H1, H1Left, Input, Left, Paragraph, Right, Span } from "./styles";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -47,10 +35,7 @@ const Register = () => {
       <Card>
         <Left>
           <H1Left>Pablot Social.</H1Left>
-          <Paragraph>
-            Join our social media to see what's going on with the people around
-            you.
-          </Paragraph>
+          <Paragraph>Join our social media to see what's going on with the people around you.</Paragraph>
           <Span>Do you have an account?</Span>
           <Link to="/login">
             <Button>Login</Button>
@@ -59,25 +44,9 @@ const Register = () => {
         <Right>
           <H1>Register</H1>
           <Form>
-            <Input
-              type="text"
-              placeholder="Username"
-              name="username"
-              onChange={handleChange}
-            />
-            <Input
-              type="text"
-              autocomplete="off"
-              placeholder="Name"
-              name="name"
-              onChange={handleChange}
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
+            <Input type="text" placeholder="Username" name="username" onChange={handleChange} />
+            <Input type="text" autocomplete="off" placeholder="Name" name="name" onChange={handleChange} />
+            <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
             {error && error}
             <ButtonForm onClick={handleClick}>Register</ButtonForm>
           </Form>

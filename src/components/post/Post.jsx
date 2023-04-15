@@ -1,15 +1,16 @@
-import { Container, Content, ContentImg, DateSpan, Details, Image, Info, Item, NameSpan, SubContainer, User, UserInfo } from "./styles";
+import { useState, useContext } from "react";
+import { useQuery, useQueryClient, useMutation } from "react-query";
+import { Link } from "react-router-dom";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Link } from "react-router-dom";
-import Comments from "../comments/Comments";
-import { useState, useContext } from "react";
 import moment from "moment";
-import { useQuery, useQueryClient, useMutation } from "react-query";
-import { makeRequest } from "../../axios";
+
+import { Container, Content, ContentImg, DateSpan, Details, Image, Info, Item, NameSpan, SubContainer, User, UserInfo } from "./styles";
 import { AuthContext } from "../../context/authContext";
+import Comments from "../comments/Comments";
+import { makeRequest } from "../../axios";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);

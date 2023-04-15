@@ -1,13 +1,12 @@
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
-import { Button, Container, Filtered, Image, Input, Left, Right, Search, SearchModal, Span, User, UserSpan, searchModal } from "./styles";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { MdOutlineLogout } from "react-icons/md";
-import { makeRequest } from "../../axios";
 import { useQuery } from "react-query";
-import { useState } from "react";
-import { useEffect } from "react";
+
+import { Button, Container, Filtered, Image, Input, Left, Right, Search, SearchModal, Span, User, UserSpan, searchModal } from "./styles";
+import { AuthContext } from "../../context/authContext";
+import { makeRequest } from "../../axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
